@@ -1,0 +1,55 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color:inherit;
+    display:block;
+}
+html, body{
+    width:370px;
+    font-size:16px;
+}
+
+table {
+    width: 350px;
+    border-collapse: collapse;
+}
+table tr td{
+    border: 1px solid #ccc;
+    height: 30px;
+    line-height: 25px;
+    width:170px;
+    padding: 0 10px;
+}
+
+#question{
+    min-height:40px;
+    line-height:35px;
+    font-size:25px;
+    font-weight:bold;
+    padding:10px;
+    overflow-y:visible;
+}
+.date{
+    background-color: #ccc;
+    font-size:12px;
+    color:#666;
+}
+#content {
+    min-height:200px;
+    height:fit-content;
+}
+
+.button{
+    text-align:center;
+}
+#submit {
+    font-weight: bold;
+    background-color: #aaf;
+}
+#close{
+    background-color: #ccc;
+}
