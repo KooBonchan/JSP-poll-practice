@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class PollListBean {
-	private int id;
+	private int pollId;
 	private String question;
 	private String startDate;
 	private String endDate;
