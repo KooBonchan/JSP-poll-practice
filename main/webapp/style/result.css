@@ -1,0 +1,31 @@
+.participant {
+    color:600;
+}
+.participant span{
+    font-weight: bold;
+}
+
+.list-container{
+    display:flex;
+    flex-direction: row;
+}
+.list-container .item{
+    width:200px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.list-container .progress-bar{
+    width:100px;
+}
+.progress-bar>.progress{
+    background-color:#666;
+    /* each item bgc set individually by jsp */
+    width:20px;
+    height:100%;
+    margin-left:0;
+    display:block;
+}
+.list-container .count {
+    width:30px;
+}

@@ -23,14 +23,14 @@ public class PollManager {
 	}
 	
 	public boolean createPoll(PollListBean pollListBean, PollBean pollBean) {
-		String sqlPollList = "INSERT INTO poll_list "
+		String sqlPollList = "INSERT INTO poll "
 				+ "(question, start_date, end_date, is_checkbox, is_active) "
 				+ "VALUES (?, ?, ?, ?, ?)";
 		String sqlPollItem = "INSERT INTO poll_item "
 				+ "(poll_id, item_id, item_name) "
 				+ "VALUES (?, ?, ?)";
 		try(Connection connection = dataSource.getConnection()){
-			try(PreparedStatement preparedStatement = connection.prepareStatement(sqlPollItem, new String[]{"poll_id"})){
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sqlPollList, new String[]{"poll_id"})){
 				preparedStatement.setString(1, pollListBean.getQuestion());
 				preparedStatement.setString(2, pollListBean.getStartDate());
 				preparedStatement.setString(3, pollListBean.getEndDate());
@@ -51,6 +51,7 @@ public class PollManager {
 					preparedStatement.executeUpdate();
 					count++;
 				}
+				// can be enhanced using batch.
 			}
 			return true;
 			
@@ -62,8 +63,8 @@ public class PollManager {
 	
 	public List<PollListBean> readAllPoll(){
 		String sql = "select poll_id, question, start_date, end_date, write_date, is_checkbox, is_active "
-				+ "from poll_list "
-				+ "order by id desc ";
+				+ "from poll "
+				+ "order by poll_id desc ";
 		List<PollListBean> result = new ArrayList<PollListBean>();
 		try(Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -99,7 +100,6 @@ public class PollManager {
 		){
 			preparedStatement.setInt(1, pollListBean.getPollId());
 			try(ResultSet resultSet = preparedStatement.executeQuery()){
-				//TODO
 				PollBean pollBean = new PollBean();
 				pollBean.setPollId(pollListBean.getPollId());
 				while(resultSet.next()) {
@@ -149,7 +149,7 @@ public class PollManager {
 	
 	public boolean deletePoll(PollListBean pollListBean) {
 		//delete on cascade.
-		String sql = "Delete from pollListBean where poll_id = ?";
+		String sql = "Delete from poll where poll_id = ?";
 		try(Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		){

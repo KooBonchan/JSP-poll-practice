@@ -21,3 +21,4 @@ CREATE TABLE poll_item (
   PRIMARY KEY (poll_id, item_id),
   FOREIGN KEY (poll_id) REFERENCES poll(poll_id) ON DELETE CASCADE
 )
+

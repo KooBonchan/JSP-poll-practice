@@ -21,6 +21,7 @@ header{
     width:fit-content;
     gap:1px;
     border-bottom:1px solid #999;
+    line-height:20px;
     padding: 5px 0;
 }
 .list-container:last-child{
@@ -34,18 +35,20 @@ header{
 }
 
 .question{
-    width:200px;
+    width: 250px;
     padding: 0 5px;
-    line-height:20px;
+    
     font-size:15px;
 }
 .question a{
     display:block;
-    overflow:hidden !important;
+    overflow:hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .date{
     color:#666;
-    width:100px;
+    width:80px;
+    font-size:13px;
     text-align:center;
 }
