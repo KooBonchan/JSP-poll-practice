@@ -26,7 +26,8 @@
 		%>
 		<li class="list-container  <%= isActive %>">
 		<div class="question">
-			<a href="#">
+			<a href="javascript:void(0);" 
+				onclick="openPollPopup(<%=poll.getPollId()%>)">
 		    <%=poll.getQuestion() %>
 			</a>
 		</div>
@@ -38,4 +39,10 @@
 %>
     </ul>
 </body>
+<script>
+function openPollPopup(pollId){
+	var popup = window.open('/poll-popup?poll_id=' + pollId, 'PollPopup', 'width=350,height=500, scrollbars=yes');
+	popup.document.body.addEventListener('contextmenu', e->{e.preventDefault();});
+}
+</script>
 </html>

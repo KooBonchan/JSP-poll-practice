@@ -1,3 +1,7 @@
+<%@page import="beans.PollItem"%>
+<%@page import="beans.PollListBean"%>
+<%@page import="beans.PollBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,27 +13,49 @@
 <link rel="stylesheet" href="./style/popup.css">
 </head>
 <body>
+	<%
+	PollListBean pollListBean = (PollListBean) request.getAttribute("pollListBean");
+	PollBean pollBean = (PollBean) request.getAttribute("pollBean");
+	if(pollBean == null || pollListBean == null){
+		%>
+	    <p>No poll data available.</p>
+		<% 
+	}
+	else { 
+	%>
 	<form action="poll-submit" method="post" id="poll-form">
+		<input type="hidden" name="poll_id" value="<%=pollListBean.getPollId() %>">
 		<table>
 			<tr>
-				<td id="question" colspan="2">super super long question with
-					length up to 200 characters.</td>
+				<td id="question" colspan="2"><%=pollListBean.getQuestion() %></td>
 			</tr>
 			<tr>
-				<td class="date" colspan="2">Survey date: 2024-02-24 ~
-					2025-02-25</td>
+				<td class="date" colspan="2">
+					Survey date:
+					<%=pollListBean.getStartDate() %> ~
+					<%=pollListBean.getEndDate() %>
+				</td>
 			</tr>
 			<tr>
-				<td class="date" colspan="2">Last changed: 2020-02-02</td>
+				<td class="date" colspan="2">Last changed: <%=pollListBean.getWriteDate() %></td>
 			</tr>
 			<tr>
 				<td id="content" colspan="2">
 					<ul>
-						<li>Sample Item</li>
-						<li>Sample Item</li>
-						<li>Sample Item</li>
-						<li>Sample Item</li>
-						<li>Sample Item</li>
+						<%
+						String inputType = pollListBean.isCheckbox() ? "checkbox" : "radio";
+						String label = pollListBean.isCheckbox() ? "pollItems" : "pollItem";
+						for(var item : pollBean.getItems()) {
+							
+							%>
+							<li>
+							<input type="<%=inputType %>" name="<%=label%>" value="<%=item.getId()%>">
+							<%=item.getName() %>
+							</li>
+							<%
+								
+						}
+						%>
 						<li>Sample Item</li>
 					</ul>
 				</td>
@@ -39,20 +65,22 @@
 				<td class="button" id="close"><a href="#">close</a></td>
 			</tr>
 		</table>
-		</form>
+	</form>
+	<script>
+	document.getElementById('submit')
+	.addEventListener('click',e=>{
+		e.preventDefault();
+		document.getElementById('poll-form').submit();
+		window.close();
+	});
+	
+	document.getElementById('close')
+	.addEventListener('click',e=>{
+		e.preventDefault();
+		window.close();
+	});
+	</script>
+	<%
+	}%>
 </body>
-<script>
-document.getElementById('submit')
-.addEventListener('click',e=>{
-	e.preventDefault();
-	document.getElementById('poll-form').submit();
-	window.close();
-});
-
-document.getElementById('close')
-.addEventListener('click',e=>{
-	e.preventDefault();
-	window.close();
-});
-</script>
 </html>

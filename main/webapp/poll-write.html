@@ -4,10 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./style/poll-write.css">
 </head>
 <body>
-
-
-    <form action="/insert-poll" method="post"></form>
+	<form action="poll-insert" method="post" name="formNewPoll">
+	<table>
+		<thead>
+			<tr><td colspan=2>Write New Poll</td></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="label">Question</td>
+				<td class="input">
+				<input name="question">
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Choices</td>
+				<td class="input">
+				<ul>
+					<li><input type="text" name="items"></li>
+					<li><input type="text" name="items"></li>
+					<li><input type="text" name="items"></li>
+					<li><input type="text" name="items"></li>
+					<li><button type="button" id="add-more-choice">Add more...</button></li>
+				</ul>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Start Date</td>
+				<td class="input">
+				<input type="date" name="start_date" value="2025-05-22" id="birthday">
+				</td>
+			</tr>
+			<tr>
+				<td class="label">End Date</td>
+				<td class="input">
+				<input type="date" name="end_date" value="2030-03-02" id="birthday">
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Multi-Select</td>
+				<td class="input">
+				<input type="radio" name="is_checkbox" checked>No
+				<input type="radio" name="is_checkbox">Yes
+				</td>
+			</tr>
+			<tr><td colspan=2><div id="button-bar">
+				<button type="button" id="submit-button">submit</button>
+				<button type="button" id="reset-button">reset</button>
+				<button type="button" id="list-button">list</button>
+			</div></td></tr>
+		</tbody>
+	</table>
+	</form>
 </body>
+<script src="./js/poll-write.js"></script>
 </html>

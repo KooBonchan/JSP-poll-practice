@@ -90,8 +90,36 @@ public class PollManager {
 		
 		return result;
 	}
+	public PollListBean readPoll(int id) {
+		String sql = "select question, start_date, end_date, write_date, is_checkbox, is_active "
+				+ "from poll "
+				+ "where poll_id = ?";
+		try(Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+		){
+			preparedStatement.setInt(1, id);
+			try(ResultSet resultSet = preparedStatement.executeQuery()){
+				if(resultSet.next()) {
+					PollListBean pollList = new PollListBean();
+					pollList.setPollId(id);
+					pollList.setQuestion(resultSet.getString("question"));
+					pollList.setStartDate(resultSet.getString("start_date"));
+					pollList.setEndDate(resultSet.getString("end_date"));
+					pollList.setWriteDate(resultSet.getString("write_date"));
+					pollList.setCheckbox(resultSet.getBoolean("is_checkbox"));
+					pollList.setActive(resultSet.getBoolean("is_active"));
+					return pollList;
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return null;
+	}
 	
-	public PollBean readPoll(PollListBean pollListBean) {
+	public PollBean readPollContents(PollListBean pollListBean) {
 		String sql = "Select item_id, item_name, count "
 				+ "from poll_item "
 				+ "where poll_id = ?";

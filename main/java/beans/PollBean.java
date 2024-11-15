@@ -10,5 +10,7 @@ import lombok.Setter;
 public class PollBean {
 	private int pollId;
 	private List<PollItem> items = new ArrayList<>();
-	
+	public int getTotal() {
+		return items.stream().mapToInt(PollItem::getCount).sum();
+	}
 }
