@@ -9,8 +9,12 @@ const listButton = document.getElementById("list-button");
 function validate(){
 	const items = Array.from(form.items)
 					.map(input => input.value)
-					.filter(input => input.length > 0)
-	if(items.length < 0){
+					.filter(input => input.length > 0);
+	console.log(items);
+	if(form.question.value.length == 0){
+		return false;
+	}
+	if(items.length == 0){
 		return false;
 	}
 	
