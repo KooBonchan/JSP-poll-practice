@@ -19,7 +19,7 @@ header{
     display:flex;
     background-color: #eee;
     flex-direction: row;
-    width:410px;
+    width:422px;
     gap:1px;
     border-bottom:1px solid #999;
     line-height:20px;
@@ -55,7 +55,7 @@ header{
 }
 #poll-write{
 	margin-top: 10px;
-	width: 410px;
+	width: 422px;
 	background-color: #cff;
 	text-align:center;
 	display:block;
