@@ -38,11 +38,12 @@
 	}
 %>
     </ul>
+    <a href="poll-write.html" id="poll-write">Create new Poll</a>
 </body>
 <script>
 function openPollPopup(pollId){
-	var popup = window.open('/poll-popup?poll_id=' + pollId, 'PollPopup', 'width=350,height=500, scrollbars=yes');
-	popup.document.body.addEventListener('contextmenu', e->{e.preventDefault();});
+	var popup = window.open('poll-popup?poll_id=' + pollId, 'PollPopup', 'width=350,height=500, scrollbars=yes');
+	popup.document.body.addEventListener('contextmenu', e=>{e.preventDefault();});
 }
 </script>
 </html>

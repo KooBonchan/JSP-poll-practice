@@ -24,16 +24,16 @@ public class PollPopup extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		int pollId;
 		try {
-			pollId = Integer.parseInt(request.getParameter("pollId"));
+			pollId = Integer.parseInt(request.getParameter("poll_id"));
 		}catch (RuntimeException e){
-			response.sendRedirect("/poll-list-view.jsp");
+			response.sendRedirect("poll-list-view.jsp");
 			return;
 		}
 		
 		PollListBean pollListBean = pollManager.readPoll(pollId);
 		PollBean pollBean = pollManager.readPollContents(pollListBean);
 		if(pollListBean == null || pollBean == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/close.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("close.html");
 			dispatcher.forward(request, response);
 			return;
 		}
@@ -41,9 +41,9 @@ public class PollPopup extends HttpServlet {
 		request.setAttribute("pollListBean", pollListBean);
 		request.setAttribute("pollBean", pollBean);
 		
-		String targetUrl = "pollPopup.jsp";
+		String targetUrl = "poll-popup.jsp";
 		if( ! pollListBean.isActive()) {
-			targetUrl = "pollResult.jsp";
+			targetUrl = "poll-result.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(targetUrl);
 		dispatcher.forward(request, response);

@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@page import="beans.PollBean"%>
 <%@page import="beans.PollListBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="/src/style/popup.css">
-    <link rel="stylesheet" href="/src/style/result.css">
+    <link rel="stylesheet" href="./style/popup.css">
+    <link rel="stylesheet" href="./style/result.css">
 </head>
 <body>
 	<%
@@ -53,7 +54,7 @@
 					<li class="list-container">
 						<div class="item" id="sample-item"><%=item.getName() %></div>
 						<div class="progress-bar">
-							<div class="progress" style="background-color: red; width: <%=percent%>px;" ></div>
+							<div class="progress" style="width: <%=percent%>px;" ></div>
 						</div>
 						<div class="count"><%=count%></div>
 					</li>
@@ -61,18 +62,6 @@
 						
 				}
 				%>
-					<li class="list-container">
-						<div class="item" id="sample-item">
-							Test item
-							Fightman on fire
-							With classic Mozart on the solo battle
-						</div>
-						<div class="progress-bar">
-							<div class="progress" style="background-color: red; width: 50px;">
-							</div>
-						</div>
-						<div class="count">2003</div>
-					</li>
 				</ul>
 			</td>
 		</tr>
@@ -84,4 +73,20 @@
 	
 	}%>
 </body>
+<script>
+function getRandomColor() {
+  var letters = '23456789ABCD';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 12)];
+  }
+  return color;
+}
+document.querySelectorAll(".progress").forEach(progress => {
+	const randomColor = getRandomColor();
+	progress.style.backgroundColor = randomColor;
+});
+document.getElementById("close").addEventListener("click", e=>window.close());
+
+</script>
 </html>

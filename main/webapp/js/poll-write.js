@@ -4,7 +4,6 @@ const addMoreChoice = document.getElementById("add-more-choice");
 const choiceForm = '<li><input type="text" name="item"></li>'
 
 const submitButton = document.getElementById("submit-button");
-const listButton = document.getElementById("list-button");
 
 function validate(){
 	const items = Array.from(form.items)
@@ -38,7 +37,4 @@ submitButton.addEventListener("click",function(e){
 	}else {
 		alert("Fill the poll correctly");
 	}
-})
-listButton.addEventListener("click",function(e){
-	history.back();
 })

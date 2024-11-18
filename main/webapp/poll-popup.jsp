@@ -49,14 +49,14 @@
 							
 							%>
 							<li>
-							<input type="<%=inputType %>" name="<%=label%>" value="<%=item.getId()%>">
-							<%=item.getName() %>
+							<input type="<%=inputType %>" name="<%=label%>" value="<%=item.getId()%>" id="item_<%=item.getId()%>">
+							<label for="item_<%=item.getId() %>"><%=item.getName() %></label>
 							</li>
 							<%
 								
 						}
 						%>
-						<li>Sample Item</li>
+						
 					</ul>
 				</td>
 			</tr>
